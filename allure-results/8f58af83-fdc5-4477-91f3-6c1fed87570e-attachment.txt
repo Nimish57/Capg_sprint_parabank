@@ -1,0 +1,5 @@
+New Checking Account ID: 16341
+Account Data from API: { id: 16341, customerId: 14099, type: 'CHECKING', balance: 100 }
+Account Type: CHECKING
+Account Balance: 100
+Customer ID: 14099

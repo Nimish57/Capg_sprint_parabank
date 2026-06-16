@@ -4,7 +4,7 @@ import RegisterPage from "../../pom/RegisterPage";
 import AccountsOverviewPage from "../../pom/Accountsoverviewpage";
 import BankApiPage from "../../pom/Bankapipage";
 import data from "../../data/data.json";
-async function registerAndGetAccount(page: any, request: any) {
+async function registerAndGetAccount(page:any,request:any) {
     const home = new HomePage(page);
     const register = new RegisterPage(page);
     const overview = new AccountsOverviewPage(page);

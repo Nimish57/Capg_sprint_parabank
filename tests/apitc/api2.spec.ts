@@ -11,19 +11,18 @@ test("Validate Account Type in API Response", async ({ page, request }) => {
     await home.clickRegister();
     await register.register(data[0]);
     await expect(page.locator('//div[@id="rightPanel"]/p')).toHaveText('Your account was created successfully. You are now logged in.');
-    // click on open new account
+    // open new account
     await page.getByRole('link', { name: 'Open New Account' }).click();
-    // select savings account
     await page.locator('#type').selectOption('1');
     // wait for from account dropdown to load
-    await expect(page.locator('#fromAccountId option')).not.toHaveCount(0); // FIX: replaced waitForTimeout
+    await expect(page.locator('#fromAccountId option')).not.toHaveCount(0);
     await page.locator('#fromAccountId').selectOption({ index: 0 });
     // click open new account button
     await page.getByRole('button', { name: 'Open New Account' }).click();
     // check congratulations message
     await expect(page.locator('#openAccountResult')).toContainText('Congratulations');
     // get new account id
-    await expect(page.locator('#newAccountId')).not.toHaveText(''); // FIX: wait for id to populate
+    await expect(page.locator('#newAccountId')).not.toHaveText('');
     let newAccountId: any = await page.locator('#newAccountId').textContent();
     newAccountId = newAccountId.trim();
     console.log('New Account ID:', newAccountId);

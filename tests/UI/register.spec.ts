@@ -26,7 +26,7 @@ test("registerwithsameusername", async ({ page }) => {
     await home.clickRegister();
     const username=await register.register(data[0]);
     await expect(page.locator('//div[@id="rightPanel"]/p')).toHaveText('Your account was created successfully. You are now logged in.');
-    await page.getByRole('link', { name: 'Log Out' }).click();
+    await page.getByRole('link',{ name:'Log Out'}).click();
     await home.clickRegister();
     await register.registerWithsameusername(data[0],username);
     await expect(page.locator('//div[@id="rightPanel"]/p')).not.toHaveText('Your account was created successfully. You are now logged in.');

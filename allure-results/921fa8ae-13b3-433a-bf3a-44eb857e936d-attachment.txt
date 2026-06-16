@@ -1,0 +1,8 @@
+New Account ID: 16896
+Account verified in API - Type: SAVINGS
+Source Balance Before: 415.5
+Destination Balance Before: 100
+Transfer completed
+Source Balance After: -84.5
+Destination Balance After: 600
+All balance changes validated successfully
