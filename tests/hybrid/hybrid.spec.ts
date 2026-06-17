@@ -86,28 +86,28 @@ test("Full Account Lifecycle - Create Account, Transfer, Validate Balances", asy
     await home.clickRegister();
     await register.register(data[0]);
     await expect(page.locator('//div[@id="rightPanel"]/p')).toHaveText('Your account was created successfully. You are now logged in.');
-    // step 1 - create savings account
+    // create savings account
     let newAccountId = await bank.openNewAccount('1');
     console.log('New Account ID:', newAccountId);
-    // step 2 - validate account type in api
+    // validate account type in api
     let accountData = await bank.getAccountData(newAccountId);
     expect(accountData.type).toBe('SAVINGS');
     console.log('Account verified in API - Type:', accountData.type);
-    // step 3 - get source account and balances before transfer
+    // get source account and balances before transfer
     let sourceAccountId = await bank.getFirstAccountId();
     let sourceBalanceBefore = await bank.getAccountBalance(sourceAccountId);
     let destBalanceBefore = await bank.getAccountBalance(newAccountId);
     console.log('Source Balance Before:', sourceBalanceBefore);
     console.log('Destination Balance Before:', destBalanceBefore);
-    // step 4 - do the transfer
+    // do the transfer
     await bank.transferFunds(data[0].amount, newAccountId);
     console.log('Transfer completed');
     let transferAmount = Number(data[0].amount);
-    // step 5 - validate source balance is reduced
+    // validate source balance is reduced
     let sourceBalanceAfter = await bank.getAccountBalance(sourceAccountId);
     console.log('Source Balance After:', sourceBalanceAfter);
     expect(sourceBalanceAfter).toBe(sourceBalanceBefore - transferAmount);
-    // step 6 - validate destination balance is increased
+    // validate destination balance is increased
     let destBalanceAfter = await bank.getAccountBalance(newAccountId);
     console.log('Destination Balance After:', destBalanceAfter);
     expect(destBalanceAfter).toBe(destBalanceBefore + transferAmount);
