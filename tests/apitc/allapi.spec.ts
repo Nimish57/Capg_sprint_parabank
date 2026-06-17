@@ -12,10 +12,7 @@ async function registerAndGetAccount(page:any,request:any) {
     await home.goto(data[0].url);
     await home.clickRegister();
     await register.register(data[0]);
-    await expect(page.locator('//div[@id="rightPanel"]/p'))
-        .toHaveText(
-            "Your account was created successfully. You are now logged in."
-        );
+    await expect(page.locator('//div[@id="rightPanel"]/p')).toHaveText("Your account was created successfully. You are now logged in.");
     const accountNumber = await overview.getFirstAccountNumber();
     return {
         overview,
@@ -49,7 +46,6 @@ test("GET Account - Non-Existent Account ID Returns Error", async ({ request }) 
     const response = await api.getAccount("99999999");
     console.log("Response Status:", response.status());
     console.log("Response Body:", await response.text());
-    // Defensive check — ParaBank may return 400 or 404 for non-existent accounts
     expect([400, 404]).toContain(response.status());
 });
 test("GET Accounts Response Structure Validation", async ({ page, request }) => {
